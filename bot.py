@@ -1,7 +1,6 @@
 import discord 
 import random
 
-from github import Github
 from discord.ext import commands
 
 intents = discord.Intents(messages = True, guilds = True, reactions = True, members = True, presences = True)
