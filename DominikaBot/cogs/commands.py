@@ -1,8 +1,13 @@
 import discord
 import asyncio
 import random
+import sys
+import contextlib
 
+from io import StringIO
 from discord.ext import commands
+from random import choice
+
 
 class Commands(commands.Cog):
 
@@ -12,32 +17,10 @@ class Commands(commands.Cog):
     
     @commands.command(aliases=['Povedz,']) #Bot will send 1 random message from the list below after being triggered
     async def _8ball(self, ctx, *, question):
-        responses = ['Áno.',
-                     'Nie.',
-                     'Je to možné.',
-                     'Je to veľmi pravdepodobné.',
-                     'Akoby sa stalo.',
-                     'Ani náhodou.',
-                     'Určite.',
-                     'Nebuď smiešny.',
-                     'To ti teraz neviem povedať.',
-                     'Pochybujem o tom.',
-                     'Môžeš sa nato spoľahnúť.',
-                     'Jedného dňa určite.',
-                     'Je to veľmi nejasné.',
-                     'S tým by som veľmi nepočítala.',
-                     'Skôr áno než nie.',
-                     'Nie je to isté.',
-                     'Neviem vôbec.',
-                     'Ťažká otázka.',
-                     'Raz tomu tak bude.',
-                     'Nepýtaj sa ma také kraviny.',
-                     'Prečo ťa zaujíma, čo si myslím?',
-                     'Istotne.',
-                     'Istotne nie.',
-                     'Pravdepodobne.',
-                     'Sústreď sa a spýtaj sa znova lebo ti nie je rozumieť.']
-        await ctx.send(f'{random.choice(responses)} ')
+        filename = "./speech/yes_no.txt"
+        f = open(filename,"r",encoding="utf8")
+        content = f.readlines()
+        await ctx.send(random.choice(content))
 
     @commands.command(aliases=['zmaz','zmaž','Zmaž']) #Deleting messages in channel
     @commands.has_permissions(manage_messages=True)
@@ -77,10 +60,58 @@ class Commands(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    #@commands.command(aliases=['Kde sme?'])
-    #async def server_id(self, ctx, *, message):
-    #    await ctx.send(ctx.)
 
+    @commands.command(aliases=['zvelič','zvelic','stupid','matus','Matúš','Zvelič'])
+    async def vyspongebobuj(self, ctx, *, message):
+        try:
+            await ctx.send(''.join(choice((str.upper, str.lower))(c) for c in message))
+        except Exception as e: print(e)
+
+
+
+    @commands.has_any_role('Python executor')
+    @commands.command(aliases=['exec','python','run','Spusti','Spythonuj','spusti'])
+    async def Spracuj(self, ctx, *, message): #TODO: rename trigger command
+        reading = False
+        result = []
+        for line in message.split('\n'):
+            if reading:
+                if line.startswith('```'):
+                    reading = False
+                    break
+                else:
+                    result.append(line)
+            else:
+                if line.startswith('```'):
+                    reading = True
+
+        code = '\n'.join(result)
+
+
+        with stdoutIO() as s:
+            try:
+                exec(code, globals())
+                await ctx.send(s.getvalue())
+            except Exception as e:
+                 e = str(e) + " "
+                 if ("send an empty message" in e):
+                     if (s.getvalue() == '' or s.getvalue() == ' '):
+                         filename = "./speech/done.txt"
+                         f = open(filename,"r",encoding="utf8")
+                         content = f.readlines()
+                         await ctx.send(random.choice(content))
+                 else:
+                     await ctx.send(e)             
+
+
+@contextlib.contextmanager
+def stdoutIO(stdout=None):
+    old = sys.stdout
+    if stdout is None:
+        stdout = StringIO()
+    sys.stdout = stdout
+    yield stdout
+    sys.stdout = old
 
           
 def setup(bot):

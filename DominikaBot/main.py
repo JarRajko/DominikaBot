@@ -37,7 +37,11 @@ def is_check_user(ctx): #Check user
 @bot.command()
 @commands.check(is_check_user) #Check user
 async def testicek(ctx):
+    channel = bot.get_channel(786223537395597356)
     await ctx.send("Yes masťer.")
+    await ctx.send(ctx.guild.id)
+    await channel.send("REEEEEEEE")
+    
 
 
 #@tasks.loop(seconds=1800)

@@ -8,9 +8,6 @@ class Leveling(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-
-
     @commands.Cog.listener()
     async def on_message(self, message):
         with open('users.json','r',encoding="utf8") as f:
@@ -25,7 +22,7 @@ class Leveling(commands.Cog):
                 if lvl_start < lvl_end:
                      user[str(message.author.id)]['level'] = user[str(message.author.id)]['level']+1
                      lvl =  user[str(message.author.id)]['level']
-                     await message.channel.send(f"Level up! {lvl} !")
+                     await message.channel.send(f"Level up! {message.author} má teraz level {lvl} !")
                      json.dump(user,f,sort_keys=True, indent=4, ensure_ascii=False)
                      return
                 json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
@@ -35,6 +32,12 @@ class Leveling(commands.Cog):
                 user[str(message.author.id)]['level'] = 0
                 user[str(message.author.id)]['exp'] = 0
                 json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
+        #finally:
+            #await self.bot.process_commands(message)
+        
+    
+         
 
+                
 def setup(bot):
     bot.add_cog(Leveling(bot))
