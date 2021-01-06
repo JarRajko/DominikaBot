@@ -1,0 +1,24 @@
+Dostupné príkazy:
+```
++-----------+---------------+--------------------------------+----------+
+|..Príkaz...|...Požiadavky..|..............Popis.............|.Vyvíjané.|
++-----------+---------------+--------------------------------+----------+
+|.ping......|---------------| Dominika? ping.................|....❌....|
+|.pichni....|---------------| Dominika? pichni @user ........|....❌....|  
+|.synonymum.|---------------| Dominika? synonymum open ......|....✔.....|
+|.antonymum.|---------------| Dominika? antonymum cold ......|....✔.....|
+|.preloz....|---------------| Dominika? preloz dog es .......|....✔.....|
+|.vyznam....|---------------| Dominika? vyznam nature .......|....✔.....|
+|.povedz....|---------------| Dominika? Povedz, otazka ......|....❌....|
+|.matus.....|---------------| Dominika? matus text ..........|....❌....|
+|.spracuj...|Python executor| Dominika? help spracuj ........|....✔.....|
+|.diceroll..|---------------| Dominika? diceroll ............|....❌....|
+|.datum.....|---------------| Dominika? datum ...............|....❌....|
+|.meniny....|---------------| Dominika? meniny Andrej .......|....❌....|
+|.meniny....|---------------| Dominika? meniny 13.5 .........|....❌....|
+|.zmaz......|Manage messages| Dominika? zmaz 5 ..............|....❌....|
+|.ocen......|---------------| Dominika? ocen ................|....❌....|
+|.tell......|Server channel | Dominika? odkaz "text" @user ..|....❌....|
+|.say.......|Rola Simp      | Dominika? say "sample text" ...|....❌....|
++-----------+---------------+--------------------------------+-----------+
+```
