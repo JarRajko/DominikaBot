@@ -6,8 +6,8 @@ import contextlib
 
 from io import StringIO
 from discord.ext import commands
-from random import choice
 
+from random import choice
 
 class Commands(commands.Cog):
 
@@ -15,7 +15,7 @@ class Commands(commands.Cog):
         self.bot = bot
 
     
-    @commands.command(aliases=['Povedz,']) #Bot will send 1 random message from the list below after being triggered
+    @commands.command(aliases=['Povedz,','povedz','povedz ','Povedz']) #Bot will send 1 random message from the list below after being triggered
     async def _8ball(self, ctx, *, question):
         filename = "./speech/yes_no.txt"
         f = open(filename,"r",encoding="utf8")
@@ -102,6 +102,126 @@ class Commands(commands.Cog):
                          await ctx.send(random.choice(content))
                  else:
                      await ctx.send(e)             
+
+
+    
+    @commands.command()
+    async def ocen(self, ctx, member : discord.Member, ocenenie, description, image_url):
+        
+        embed = discord.Embed (
+        title = ocenenie,
+        description = description,
+            
+        colour = discord.Colour.red()
+        )
+
+        embed.set_footer(text='Ocenenie udelené od sekretárky Dominiky')
+        embed.set_image(url=image_url)
+        embed.set_author(name=member.display_name, icon_url = member.avatar_url)
+
+        await ctx.message.delete()
+        await ctx.send(embed=embed)
+
+
+    @commands.command(aliases=['poke','stuchni','píchni'])
+    @commands.cooldown(1, 60, commands.BucketType.user)
+    async def pichni(self, ctx, member : discord.Member = None):
+        try:
+            if member is not None:
+                channel = member.dm_channel
+                if channel is None:
+                    channel = await member.create_dm()
+                filename = "./speech/pokes.txt"
+                f = open(filename,"r",encoding="utf8")
+                content = f.readlines()
+                
+                filename2 = "./speech/done.txt"
+                f2 = open(filename2,"r",encoding="utf8")
+                content2 = f2.readlines()
+                f.close()
+                f2.close()
+                await ctx.send(random.choice(content2))  
+                await channel.send("%s"% ctx.author.name + " " + random.choice(content))
+            else:
+                await ctx.send("Použi @mention ak chceš niekoho štuchnúť.")
+        except Exception as e:
+            print(e)
+            await ctx.send("Pekny pokus.")
+
+
+    @commands.command(aliases=["odkáž","odkaz","Odkáž","Odkáž "])
+    @commands.cooldown(1,10,commands.BucketType.user)
+    async def tell(self, ctx, message, member : discord.Member = None ):
+        try:
+            if member is not None:
+                channel = member.dm_channel
+                if channel is None:
+                    channel = await member.create_dm()
+
+                filename2 = "./speech/tell.txt"
+                f2 = open(filename2,"r",encoding="utf8")
+                content2 = f2.readlines()
+                f2.close()
+                await ctx.send(random.choice(content2))  
+                await channel.send("%s"% ctx.author.name + " ti odkazuje, citujem: \" " + message + " \"")
+            else:
+                await ctx.send("Komu ale?")
+        except Exception as e:
+            print(e)
+            await ctx.send("Pekny pokus.")
+
+
+    @commands.command(aliases=['hod kockou','diceroll'])
+    @commands.cooldown(1, 5, commands.BucketType.user)
+    async def hod_kockou(self, ctx):
+        kocka1 =            "```  ____\n /\\' .\\ \n/: \\___\\\n\\' / . /\n \\/___/ \n```"
+
+        kocka2 =         "```  _____\n / .  /\\\n/____/..\\\n\\'  '\\  /\n \\'__'\\/\n```"
+
+        msg = await ctx.send(kocka1)  
+        for i in range (5):
+            await asyncio.sleep(0.1)
+            await msg.edit(content = kocka2)
+            await asyncio.sleep(0.1)
+            await msg.edit(content = kocka1)
+        await msg.edit(content = "```\n.\n.\n.Tvoje cislo je " + str(random.randint(1,6))+" \n.\n.```")
+        #edit_message(msg,"Hadzem kockou.....")
+
+
+    @commands.command(aliases=["plus rep", "+ rep"])
+    async def plus_rep(self, ctx, member:discord.Member = None):
+         if member is not None:
+            f = open("./reputation.txt","w",encoding="utf8")
+            content = f.readlines()
+            content = content.split("\n")
+            await ctx.send(content)
+            
+            for i in content:
+                await ctx.send(i)
+            f.close()
+            await ctx.send(member)
+         else:
+             await ctx.send("Ešte raz, komu to ten + rep?")
+    
+    @commands.command()
+    async def ban(self, ctx, member : discord.Member = None):
+        if member is not None:
+            await ctx.send("https://media1.tenor.com/images/d856e0e0055af0d726ed9e472a3e9737/tenor.gif")
+            await ctx.send("<@" + str(member.id) + "> má ban!!§")
+        else:
+            await ctx.send("Použi @mention pre banan.")
+    
+    @commands.Cog.listener()
+    async def on_command_error(self,ctx,error):
+        if isinstance(error, commands.CommandNotFound):
+            filename = "./speech/unknown_command.txt"
+            f = open(filename,"r",encoding="utf8")
+            content = f.readlines()
+            await ctx.send(random.choice(content))
+        else:
+            await ctx.send(error)
+
+
 
 
 @contextlib.contextmanager
