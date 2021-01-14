@@ -23,17 +23,29 @@ class On_message(commands.Cog):
         else:
             pass
 
-        if (message.content[0] == "/"):
+        try:
+            if (message.content[0] == "/"):
+                filename = "./speech/emotes.txt"
+                f = open(filename,"r",encoding="utf8")
+                content = "".join(f.readlines()).split("\n")
+
+                for i in range (len(content)):
+                    if message.content in content[i]:
+                        s = content[i].split("|")
+                        await message.channel.send(s[1])
+                        break
+        except Exception as e: #bugfex
+            pass
+
+        if (message.content == "/emoty"):
+            await message.author.send("List emote-ov oddelený pajpov.")
             filename = "./speech/emotes.txt"
             f = open(filename,"r",encoding="utf8")
-            content = "".join(f.readlines()).split("\n")
-
-            for i in range (len(content)):
-                if message.content in content[i]:
-                    s = content[i].split("|")
-                    await message.channel.send(s[1])
-                    break
-        
+            content = "".join(f.readlines())
+            f.close()
+            await message.author.send(str(content))
+            channel = message.channel.id
+            await message.channel.send('Poslala som ti emote list do DM zlato.')
     
 
 def setup(bot):

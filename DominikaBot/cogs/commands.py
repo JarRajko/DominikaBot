@@ -44,19 +44,19 @@ class Commands(commands.Cog):
     @commands.command() # <3 Embed messages
     async def dis(self, ctx):
         embed = discord.Embed(
-            title = 'Title',
-            description = 'Description',
+            title = 'Ping',
+            description = 'Príkaz na zistenei odozvy. Čisto informatívny.',
             
             colour = discord.Colour.red()
         )
 
-        embed.set_footer(text='Footer lmao')
-        embed.set_image(url='https://cdn.discordapp.com/attachments/783036978127175680/783416344393154610/dominika_portrait_.png')
+        #embed.set_image(url='https://cdn.discordapp.com/attachments/783036978127175680/783416344393154610/dominika_portrait_.png')
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/783036978127175680/783416344393154610/dominika_portrait_.png')
-        embed.set_author(name='Big Rajko', icon_url = 'https://cdn.discordapp.com/attachments/783036978127175680/783416344393154610/dominika_portrait_.png')
-        embed.add_field(name='Field name',value='Field Value', inline=False)
-        embed.add_field(name='Field name',value='Field Value', inline=True)
-        embed.add_field(name='Field name',value='Field Value', inline=True)
+        #embed.set_author(name='Big Rajko', icon_url = 'https://cdn.discordapp.com/attachments/783036978127175680/783416344393154610/dominika_portrait_.png')
+        embed.add_field(name='Požiadavky',value='Žiadne', inline=False)
+        embed.add_field(name='Použitie',value='Dominika? ping', inline=False)
+        embed.add_field(name='Vyvíjané',value='❌', inline=False)
+        embed.set_footer(text='Here comes the trivia?')
 
         await ctx.send(embed=embed)
 
@@ -171,7 +171,7 @@ class Commands(commands.Cog):
             await ctx.send("Pekny pokus.")
 
 
-    @commands.command(aliases=['hod kockou','diceroll'])
+    @commands.command(aliases=['hod','diceroll'])
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def hod_kockou(self, ctx):
         kocka1 =            "```  ____\n /\\' .\\ \n/: \\___\\\n\\' / . /\n \\/___/ \n```"

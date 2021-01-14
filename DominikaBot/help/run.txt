@@ -1,0 +1,9 @@
+Spusti▄Doslova, pythom interpreter▄
+Požiadavky▄Správne napísaná syntax▄
+Použitie▄
+ Dominika? spusti **```**
+python kod 
+**```** ▄
+Vyvíjané▄:white_check_mark:  ▄
+Vyvíjaný príkaz, asi najviac netestovaný takže môže mať nejaké muchy▄
+https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.allthingsclipart.com%2F04%2Fpython.01.jpg&f=1&nofb=1

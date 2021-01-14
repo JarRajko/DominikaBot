@@ -1,47 +1,101 @@
-/lenny|  ( ͡° ͜ʖ ͡°)
-/stare|(ㆆ _ ㆆ)
+/aim|(　-_･)σ
 /angel|☜(⌒▽⌒)☞
 /angry|•`_´•
-/koala|ʕ·͡ᴥ·ʔ
+/angry2|ლ(ಠ_ಠლ) 
 /bearflip|ʕノ•ᴥ•ʔノ ︵ ┻━┻
 /bearhug|ʕっ•ᴥ•ʔっ
 /bond|┌( ͝° ͜ʖ͡°)=ε/̵͇̿̿/’̿’̿ ̿
+/box|(=O*_*)=O Q(*_*Q)
 /bribe |( •͡˘ _•͡˘)ノð
 /bubbles|( ˘ ³˘)ノ°ﾟº❍｡
 /butterfly|ƸӜƷ
+/cake|( ^-^)_旦
 /cato|	(= ФェФ=)
 /check|✔
 /cheer|	※\(^o^)/※
 /cloud|☁
 /club|♣
 /coffee|c[_]
+/coffee2|( ˘▽˘)っ♨
+/cool|(¬◡¬)✧
 /copyright|©
+/confused|(´･_･`)
+/confused2|【・_・?】
+/cry|｡･ﾟﾟ*(>д<)*ﾟﾟ･｡
+/cry2|(┳Д┳)
+/cry3|ಥ_ಥ
 /cute|(｡◕‿‿◕｡)
+/dance|ヽ(°◇° )ノ
 /dollar|[̲̅$̲̅(̲̅ιο̲̅̅)̲̅$̲̅]
-/table|┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻
+/doubt|(￢_￢)
 /duel|ᕕ(╭ರ╭ ͟ʖ╮•́)⊃¤=(————-
 /dunno|¯\(°_o)/¯
 /endure|(҂◡_◡) ᕤ
+/evil|(｀∀´)Ψ
+/euro|€
+/excited|٩(^ᴗ^)۶
+/flex|(•̀ᴗ•́)و ̑̑
+/flower|✿ڿڰۣ—
+/gib|༼ つ ◕_◕ ༽つ
 /gift|(´・ω・)っ由
+/greet|(*・ω・)ﾉ
+/half|½
+/happy|( ^◡^)
 /hello|(ʘ‿ʘ)╯
+/hug|(づ￣ ³￣)づ
+/idc|┐( ˘ ､ ˘ )┌
+/idk|◔_◔
 /inlove|(っ´ω`c)♡
+/irritated|ヽ(#`Д´)ﾉ
+/kawai|＼(^ω^＼)
+/kiss|( ˘ ³˘)♥
+/koala|ʕ·͡ᴥ·ʔ
+/laugh|(≧▽≦)
+/lenny|  ( ͡° ͜ʖ ͡°)
+/lenno|( ͡◉◞ ͜ʖ◟ ͡◉)
+/lenny2|┬┴┬┴┤( ͡° ͜ʖ├┬┴┬┴
 /lennybill|[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]
 /lennyfight|(ง ͠° ͟ʖ ͡°)ง
 /lennystrong|ᕦ( ͡° ͜ʖ ͡°)ᕤ
-/wizzard|╰( ͡° ͜ʖ ͡° )つ──☆*:・ﾟ
+/listenhere|(◣_◢)
 /love|♥‿♥
-/half|½
-/quarter|¼
-/third|⅓
-/original|®
-/flower|✿ڿڰۣ—
-/smirk|¬‿¬
-/swag|(̿▀̿‿ ̿▀̿ ̿)
-/star|★
-/sword|o()xxxx[{::::::::::::::::::>
-/zombie|[¬º-°]¬
-/tears|(ಥ﹏ಥ)
-/wut|⊙ω⊙
-/yolo|	Yᵒᵘ Oᶰˡʸ Lᶤᵛᵉ Oᶰᶜᵉ
-/ohyou|(◞థ౪థ)ᴖ
+/meh|┐(￣ヮ￣)┌
+/nervous|(;¬_¬)
+/nervous2|(;¬_¬;)
+/no|(╯°□°）╯<(NO!)
+/nooo|(ᗒᗣᗕ)՞
 /nuclear|☢
+/o|●_●
+/ohyou|(◞థ౪థ)ᴖ
+/original|®
+/pain|☆⌒(>。<)
+/quarter|¼
+/quiet|ᕙ(⇀‸↼‶)ᕗ
+/question|( ・◇・)？
+/rival|(งಠ_ಠ)ง　σ( •̀ ω •́ σ)
+/rip|٩(× ×)۶
+/salute|(`･ω･´)ゞ
+/smirk|¬‿¬
+/snob|ಠ_ರೃ
+/snore|(∪｡∪)｡｡｡zzz
+/stare|(ㆆ _ ㆆ)
+/star|★
+/surprised|(◑○◑)
+/swag|(̿▀̿‿ ̿▀̿ ̿)
+/sword|o()xxxx[{::::::::::::::::::>
+/table|┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻
+/tears|(ಥ﹏ಥ)
+/third|⅓
+/thinking|｢(ﾟﾍﾟ)
+/tough|(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄
+/turbofish|::<>
+/uglyface| <O_.)
+/walk|ᕕ( ᐛ )ᕗ
+/what|(☉_☉)
+/why|ლ(╥﹏╥ლ)<(Why?)
+/wizzard|╰( ͡° ͜ʖ ͡° )つ──☆*:・ﾟ
+/wut|⊙ω⊙
+/yes|ಠᴗಠ
+/yolo|	Yᵒᵘ Oᶰˡʸ Lᶤᵛᵉ Oᶰᶜᵉ
+/youknow|(¬‿¬ )
+/zombie|[¬º-°]¬
