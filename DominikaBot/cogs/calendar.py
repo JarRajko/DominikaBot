@@ -1,17 +1,19 @@
 import discord
 import calendar
 import datetime
+import asyncio
 
 from itertools import cycle
 from datetime import datetime
+from . import help_cog
 from discord.ext import commands, tasks
 
 class Calendar(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.loopy.start()
-        print("Loop ready i guess")
+        #self.loopy.start()
+        #print("Loop ready i guess")
         
 
     @commands.command(aliases=['Dátum','dátum']) 
@@ -83,9 +85,11 @@ class Calendar(commands.Cog):
             
     
     @commands.command(aliases=['Meniny','meno', 'Meno']) # <3 Embed messages
-    async def meniny(self, ctx, name):
+    async def meniny(self, ctx, name, country = 'sk'):
         try:
-            f = open("mena.txt",encoding="utf8")
+            
+            if  (country == "cz"): f = open("menaCz.txt",encoding="utf8")
+            else: f = open("mena.txt",encoding="utf8")
             content = f.readlines()
             if("." in name):
                 for x in content:
@@ -97,9 +101,14 @@ class Calendar(commands.Cog):
                         if(len(x) == 4):
                             await ctx.send("a " + str(x[3]))
                         return
-                await ctx.send("Tak to neviem teda.")                    
-                
-            else:     
+                await ctx.send("Takto to nefunguje zlato. ")
+                await asyncio.sleep(1)
+                await ctx.send("Nemôžeš písať random bodky a čakať že to bude v \"pohode\".");
+                await asyncio.sleep(1)
+                await ctx.send("Pozri si radšej ako funguje tento príkaz.")
+                await asyncio.sleep(1)
+                await help_cog.Help_cog(self).pomoc(self, ctx, "meniny") 
+            else:
                 for x in content:
                     x = x[:-1]
                     x = x.split(".")
@@ -110,12 +119,28 @@ class Calendar(commands.Cog):
                     if(x[2]==name): 
                         await ctx.send(name + " má meniny "+ str(x[0])+"."+str(x[1]))
                         return
-                await ctx.send("Neviem kedy má " + name + " meniny.")    
+                await ctx.send("Takto to nefunguje zlato. ")
+                await asyncio.sleep(1)
+                await ctx.send("Mená začínaju veľkým písmenom.");
+                await asyncio.sleep(1)
+                await ctx.send("Pozri si radšej ako funguje tento príkaz.")
+                await asyncio.sleep(1)
+                await help_cog.Help_cog(self).pomoc(self, ctx, "meniny")    
         except Exception as e: print(e)
 
-    @tasks.loop(seconds=5.0)
-    async def loopy(self):
-        return
+    @meniny.error
+    async def meninyHandler(self, ctx, error):
+        await ctx.send("Meniny KTO?!?!");
+        await asyncio.sleep(1)
+        await ctx.send("Tu máš help ty nedokončovateľ príkazov.");
+        await asyncio.sleep(1)
+        await help_cog.Help_cog(self).pomoc(self, ctx, "meniny")
+
+    
+
+    #@tasks.loop(seconds=5.0)
+    #async def loopy(self):
+    #    return
         
 def setup(bot):
     bot.add_cog(Calendar(bot))

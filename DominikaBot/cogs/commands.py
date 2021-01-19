@@ -4,10 +4,14 @@ import random
 import sys
 import contextlib
 
+
 from io import StringIO
 from discord.ext import commands
-
+from . import help_cog
 from random import choice
+from RestrictedPython import safe_globals
+
+
 
 class Commands(commands.Cog):
 
@@ -69,9 +73,9 @@ class Commands(commands.Cog):
 
 
 
-    @commands.has_any_role('Python executor')
+    @commands.has_any_role('Velevážený hosť','Starý známy hosť')
     @commands.command(aliases=['exec','python','run','Spusti','Spythonuj','spusti'])
-    async def Spracuj(self, ctx, *, message): #TODO: rename trigger command
+    async def spracuj(self, ctx, *, message): #TODO: rename trigger command
         reading = False
         result = []
         for line in message.split('\n'):
@@ -87,21 +91,20 @@ class Commands(commands.Cog):
 
         code = '\n'.join(result)
 
-
-        with stdoutIO() as s:
-            try:
-                exec(code, globals())
-                await ctx.send(s.getvalue())
-            except Exception as e:
-                 e = str(e) + " "
-                 if ("send an empty message" in e):
-                     if (s.getvalue() == '' or s.getvalue() == ' '):
-                         filename = "./speech/done.txt"
-                         f = open(filename,"r",encoding="utf8")
-                         content = f.readlines()
-                         await ctx.send(random.choice(content))
-                 else:
-                     await ctx.send(e)             
+        try:
+            codeResult = await asyncio.wait_for(asyncio.gather(asyncio.to_thread(executeRun, code)), timeout=1.0)
+            codeResult = ''.join(codeResult)
+            if (not codeResult):
+                await ctx.send("Program prebehol úspešne.")
+            elif (len(codeResult.split('\n')) > 10):
+                await ctx.send("Výsledok je moc dlhý. Bol by to spam keyže to tu postnem.")
+            elif (len(codeResult) > 500):
+                await ctx.send("Output je obmedzený na 500 znakov.\n Toto je už moc aj na mňa.")
+            else:
+                await ctx.send((codeResult))
+        except asyncio.TimeoutError:
+            await ctx.send('Čas na spracovanie vypršal.')
+        
 
 
     
@@ -218,10 +221,69 @@ class Commands(commands.Cog):
             f = open(filename,"r",encoding="utf8")
             content = f.readlines()
             await ctx.send(random.choice(content))
-        else:
-            await ctx.send(error)
 
 
+    @ban.error
+    async def banHandler(self, ctx, error):
+        await ctx.send("Nevieš ani riadne niekoho zabanovať. Ccc");
+        await help_cog.Help_cog(self).pomoc(self, ctx, "ban")
+
+    @ocen.error
+    async def ocenHandler(self, ctx, error):
+        await ctx.send("Takto sa to nerobí! Na, radšej si pozri help.");
+        await help_cog.Help_cog(self).pomoc(self, ctx, "ocen")
+
+    @pichni.error
+    async def pokeHandler(self, ctx, error):
+        await ctx.send("Keď chceš niekoho pichnúť, tak poriadne! Tu máš ako na to.");
+        await help_cog.Help_cog(self).pomoc(self, ctx, "poke")
+
+    @_8ball.error
+    async def _8ballHandler(self, ctx, error):
+        await ctx.send("Takto sa to nerobí! Tu máš pomoc ako na to.");
+        await help_cog.Help_cog(self).pomoc(self, ctx, "povedz")
+
+    @spracuj.error
+    async def executeHandler(self, ctx, error):
+        #await ctx.send("Takto to nefunguje. Pozri si help. Možno nemáš práva? :thinking:");
+        await ctx.send(error)
+        await ctx.send("Niektoré importy sú z bezpečnostných dôvodov zakázané.")
+        await ctx.send("Napíš \"Dominika? pomoc run\" pre návod na použitie príkazu.")
+        #await help_cog.Help_cog(self).pomoc(self, ctx, "run")
+
+    @say.error
+    async def sayHandler(self, ctx, error):
+        await ctx.send(":)");
+        await help_cog.Help_cog(self).pomoc(self, ctx, "say")
+
+    @tell.error
+    async def tellHandler(self, ctx, error):
+        await ctx.send("Ono.. to funuje trochu ináč ako si to teraz napísal. Pozri si help radšej.");
+        await help_cog.Help_cog(self).pomoc(self, ctx, "tell")
+
+    @clr.error
+    async def clearHandler(self, ctx, error):
+        await ctx.send("Isto máš práva na tento príkaz? :thinking:");
+        await help_cog.Help_cog(self).pomoc(self, ctx, "zmaz")
+
+
+def executeRun(code):
+    with stdoutIO() as s:
+        try:
+            safe_globals['print'] = print
+            exec(code, safe_globals)
+            return s.getvalue()
+        except Exception as e:
+            e = str(e) + " "
+            if ("send an empty message" in e):
+                if (s.getvalue() == '' or s.getvalue() == ' '):
+                    filename = "./speech/done.txt"
+                    f = open(filename,"r",encoding="utf8")
+                    content = f.readlines()
+                    return random.choice(content)
+                else:
+                    return e   
+               
 
 
 @contextlib.contextmanager

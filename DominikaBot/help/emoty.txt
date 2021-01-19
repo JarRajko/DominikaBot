@@ -1,6 +1,7 @@
 Emoty▄Emojis ktoré poznám UwU▄
 Požiadavky▄Žiadne▄
-Použitie▄/angry  | Pre zoznam emotov napíš /emoty |▄
+Použitie▄/angry  
+| Pre zoznam emotov napíš /emoty |▄
 Vyvíjané▄:white_check_mark:▄
 Nové emoty sú priebežne pridávané. ▄
 https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fcc%2Fe5%2Faa%2Fcce5aa0b20e2033c4cb2907d588546a4--ascii-art-emojis.jpg&f=1&nofb=1
