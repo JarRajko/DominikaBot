@@ -235,8 +235,13 @@ class Commands(commands.Cog):
 
     @pichni.error
     async def pokeHandler(self, ctx, error):
-        await ctx.send("Keď chceš niekoho pichnúť, tak poriadne! Tu máš ako na to.");
-        await help_cog.Help_cog(self).pomoc(self, ctx, "poke")
+        if ("You are on cooldown" in str(error)):
+            cooldown = str(error)[-6:]
+            await ctx.send("Nemôžeš niekoho štuchnúť viac ako raz za minútu.")
+            await ctx.send("Musíš ešte počkat " + cooldown)
+        else:
+            await ctx.send("Keď chceš niekoho pichnúť, tak poriadne! Tu máš ako na to, lebo takto sa to nerobí.");
+            await help_cog.Help_cog(self).pomoc(self, ctx, "poke")
 
     @_8ball.error
     async def _8ballHandler(self, ctx, error):
@@ -258,8 +263,12 @@ class Commands(commands.Cog):
 
     @tell.error
     async def tellHandler(self, ctx, error):
-        await ctx.send("Ono.. to funuje trochu ináč ako si to teraz napísal. Pozri si help radšej.");
-        await help_cog.Help_cog(self).pomoc(self, ctx, "tell")
+        if ("You are on cooldown" in str(error)):
+            cooldown = str(error)[-6:]
+            await ctx.send("Musíš ešte počkat " + cooldown + " predtým, než niekomu niečo zase odkážeš.")
+        else:
+            await ctx.send("Ono.. to funuje trochu ináč ako si to teraz napísal. Pozri si help radšej.");
+            await help_cog.Help_cog(self).pomoc(self, ctx, "tell")
 
     @clr.error
     async def clearHandler(self, ctx, error):
