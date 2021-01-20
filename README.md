@@ -49,3 +49,7 @@ Avatar
 Prefix 
 – text, ktorý sa používa pre aktivovanie bota
 
+
+Dostupné príkazy:
+    Dominika? antonymum dog
+
