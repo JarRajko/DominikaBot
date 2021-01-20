@@ -67,9 +67,9 @@ Dostupné príkazy:
 - Dominika? pomoc prikazy >>> Zobrazí help ako embed pre všetky dostupné príkazy
 - Dominika? pomoc *názov príkazu* >>> Zobrazí pomoc pre príkaz
 - Dominika? ping >>> Zobrazí odozvu bota
-- Dominika? run *```*
+- Dominika? run *```
 print("hello world")
-*```* >>> Zadaný python kód sa preloží a výstup sa vypíše (príkaz je značne obmedzený kvôli bezpečnosti)
+```* >>> Zadaný python kód sa preloží a výstup sa vypíše (príkaz je značne obmedzený kvôli bezpečnosti)
 - Dominika? zvelic Sample text >>> Odošle text s náhode kapitalizovanými písmenami
 - Dominika? poke @user >>> Odošle DM adresátovi o tom, že ho zadávateľ príkazu štuchol
 - Dominika? zmaz 5 >>> Zmaže 5 správ v roomke v ktorej sa príkaz vyvolal
