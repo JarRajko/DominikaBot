@@ -53,7 +53,7 @@ DM
 - skratka Direct message, správa priamo užívateľovi
 
 Ban 
-- Zablokovanie a vyhodenie užívateľa zo serveru 
+- zablokovanie a vyhodenie užívateľa zo serveru 
 
 Dostupné príkazy:
     Dominika? antonymum cold >>> Zobrazí antonymum pre slovo cold (English only)
