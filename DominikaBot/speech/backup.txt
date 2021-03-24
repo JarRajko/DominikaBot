@@ -1,0 +1,46 @@
+  @commands.command()
+    async def roztried(self, ctx, *, memberList):
+        inp = memberList.split(" ")
+        t1 = []
+        t2 = []
+                
+            
+        if (len(inp) < 10):
+            await ctx.send("Chyba vam este " + str(10 - len(inp)))   
+            pass
+        elif (len(inp) > 10):
+            await ctx.send("Je vas az " + len(inp) + " musite vykopnut " + str(len(inp) - 10) )
+            pass
+        else:
+
+             
+            while("" in inp): 
+                inp.remove("")
+
+            #for i in inp:
+              #  element = inp[i]
+                #if (element[0] == "+"):
+                 #   inp.remove(element)
+                  #  t2.add(element)
+                #elif (element[0] == "-"):
+                 #   inp.remove(element)
+                  #  t1.add(element)
+
+            
+            for i in range (5):
+                ch = random.choice(i)
+                t1.remove(ch)
+                t2.append(ch)
+                
+
+            output = "```diff\n Team 1: \n\n"
+
+            for i in t1:
+                output += "- " + i + "\n"
+
+            output += "```\n ```diff\n"
+            output += " Team 2:\n\n"
+            for i in t2:
+                output += "+ " + i + "\n"
+            output += "```"    
+            await ctx.send(output)

@@ -1,0 +1,16 @@
+Spusti▄Doslova, python interpreter▄
+Požiadavky▄Správne napísaná syntax, **Rola Velevážený hosť alebo Starý známy hosť**▄
+Použitie▄
+
+ Dominika? spusti **```python**
+python kod 
+**```**
+
+1. Na prvom riadku je príkaz a 3 tupé apostrofy >>> Dominika? *```*
+2. Na ostatných riadkoch je samotný kód, ktorý chcete spustiť
+3. Na poslednom riadku sú 3 tupé apostrofy >>> *```*
+
+ ▄
+Vyvíjané▄:white_check_mark:  ▄
+Vyvíjaný príkaz, asi najviac netestovaný takže môže mať nejaké muchy▄
+https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.allthingsclipart.com%2F04%2Fpython.01.jpg&f=1&nofb=1

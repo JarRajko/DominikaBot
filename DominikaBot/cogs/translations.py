@@ -22,19 +22,36 @@ class Translations(commands.Cog):
     
     @commands.command()
     async def preloz(self, ctx, word, lang):
-        await ctx.send("word is " + word)
-        await ctx.send("lang is " + lang)
-        print (dictionary.translate("Range",'es'))
-        await ctx.send(print (dictionary.translate("Range",'es')))
-        await ctx.send(dictionary.translate(word,lang))
-        print(word)
-        print(lang)
+        await ctx.send("```" + dictionary.translate(word,lang) + "```")
 
 
-    @commands.command()
+    @commands.command(aliases = ['meaning', 'Meaning', 'meanings', 'Meanings', 'explain', 'Explain','vyznamy', 'Význam', 'Významy'])
     async def vyznam(self, ctx, word):
-        await ctx.send(', '.join(dictionary.meaning(word)))
+        dic = dictionary.meaning(word)
+        
+        result = ''
+        
+        for k in dic.keys():
+            result += k + ':\n'
+            for m in dic[k]:
+                result += word + " can be: " + m + "\n\n"
+        await ctx.send("```" + result + "```")
 
+    @antonymum.error
+    async def antonymumHandler(self, ctx, error):
+        await ctx.send("Žiadné antonymá pre toto slová som nenašla :(")
+
+    @synonymum.error
+    async def synonymumHandler(self, ctx, error):
+        await ctx.send("Žiadné synonymá pre toto slová som nenašla :(")
+
+    @preloz.error
+    async def prelozHandler(self, ctx, error):
+        await ctx.send("Nejaká chyba. :(")
+
+    @vyznam.error
+    async def vyznamHandler(self, ctx, error):
+        await ctx.send("Takto to nefunguje ale :ˇ(")
 
 def setup(bot):
     bot.add_cog(Translations(bot))
