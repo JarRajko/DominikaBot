@@ -1,6 +1,0 @@
-Ocenenie▄Vytváranie embed správ (konkr. ocenenie) podľa určitého formátu.▄
-Požiadavky▄Žiadne▄
-Použitie▄Dominika? ocen @user "Titul" Popis" URL obrázku▄
-Vyvíjané▄❌▄
-Na footri je napísané 'Ocenenie udelené od sekretárky Dominiky'. Všimni si aj úvodzovky, ktoré su v tomto prípade potrebné pri zadávaní príkazu. ▄
-https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng.pngtree.com%2Felement_origin_min_pic%2F17%2F03%2F25%2F96f9599299f68f2c7cf6a77ec3bca462.jpg&f=1&nofb=1
