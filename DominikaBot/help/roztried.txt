@@ -1,6 +1,0 @@
-Roztried▄Ked chceš roztriediť 10 ľudí do 2 tímov▄
-Požiadavky▄Žiadne▄
-Použitie▄Dominika? roztried 1 2 3 4 5 6 7 8 9 10▄
-Vyvíjané▄❌▄
-Tie čísla reprezentuje 10 členov, ktorí majú byť roztriedení do tímov. Pridelenie členov do tímu sa dá aj manuálne tak, že pred meno napíšeš + alebo - podľa toho do ktorého tímu chceš prideliť hráča, tým sa zaručí, aby neboli 2 (alebo viacerí) silní ľudia v 1 tíme  ▄
-https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn0.vox-cdn.com%2Fthumbor%2Fy_9QwbDyN7zQ5_qGw9SD7hTta_s%3D%2F0x0%3A960x540%2F1600x900%2Fcdn0.vox-cdn.com%2Fuploads%2Fchorus_image%2Fimage%2F48678823%2Ftf2_medic_two_cities.0.jpg&f=1&nofb=1
