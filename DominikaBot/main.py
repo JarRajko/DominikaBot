@@ -50,5 +50,7 @@ async def testicek(ctx):
 def setup(bot):
     bot.add_cog(Example(bot))
 
-    
-bot.run('NzgzMDIwNjIwNDUwODg5NzM5.X8Uqxw.O5_xj7SuQBJtR49VFkbynsOW26c')    
+
+f = open("token.txt",encoding="utf8")
+token = f.readlines()    
+bot.run(token[0])    

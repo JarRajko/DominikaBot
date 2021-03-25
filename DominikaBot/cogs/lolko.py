@@ -3,7 +3,7 @@ import os
 import random
 
 from discord.ext import commands
-from discord.ext import menus
+
 
 class Lolko(commands.Cog):
 
