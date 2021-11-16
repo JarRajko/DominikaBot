@@ -209,10 +209,26 @@ class Commands(commands.Cog):
     @commands.command()
     async def ban(self, ctx, member : discord.Member = None):
         if member is not None:
-            await ctx.send("https://media1.tenor.com/images/d856e0e0055af0d726ed9e472a3e9737/tenor.gif")
-            await ctx.send("<@" + str(member.id) + "> má ban!!§")
+            if "Dominika#1684" in str(member):
+                await ctx.send("Nemôžeš zabanovať všemocnú Dominiku, ty bezvýznamná kreatúra!")
+            elif "Doktor Rajko#0913" in str(member):
+                await ctx.send("https://media.giphy.com/media/Wt6kNaMjofj1jHkF7t/giphy.gif")
+                await ctx.send(ctx.author.name + " dostal ban!!!")
+            else:
+                await ctx.send("https://media1.tenor.com/images/d856e0e0055af0d726ed9e472a3e9737/tenor.gif")
+                await ctx.send("<@" + str(member.id) + "> má ban!!§")
         else:
             await ctx.send("Použi @mention pre banan.")
+
+
+    @commands.command()
+    async def getUser(self, ctx, member : discord.Member = None):
+        if member is not None:
+                print(str(member))
+                await ctx.send("Dominika#1684" in str(member))
+
+
+    
     
     @commands.Cog.listener()
     async def on_command_error(self,ctx,error):
@@ -222,7 +238,6 @@ class Commands(commands.Cog):
             f = open(filename,"r",encoding="utf8")
             content = f.readlines()
             await ctx.send(random.choice(content))
-            
 
 
     @ban.error
