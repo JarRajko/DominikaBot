@@ -32,6 +32,12 @@ class On_message(commands.Cog):
         except Exception as e: #bugfex
             pass
 
+        if ("drz hubu" in message.content.lower() or "drž hubu" in message.content.lower() and str(message.author) != "Dominika#1684"):
+             await message.channel.send("Ty drž hubu.")
+        else:
+            pass
+
+
         if (message.content == "/emoty"):
             await message.author.send("List emote-ov oddelený pajpov.")
             filename = "./speech/emotes.txt"

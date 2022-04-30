@@ -1,4 +1,1 @@
-.|Čo bodkuješ?
-ahoj|Ahoj!
-cau|Cauko!
-Ahoj|ahojky
+Template toho co uzivatel napise.|odpoved od bota na tento trigger

@@ -205,13 +205,13 @@ class Commands(commands.Cog):
             await ctx.send(member)
          else:
              await ctx.send("Ešte raz, komu to ten + rep?")
-    
-    @commands.command()
+
+    @commands.command(aliases=['Ban','zabanuj','Zabanuj','vykopni','Vykopni'])
     async def ban(self, ctx, member : discord.Member = None):
         if member is not None:
             if "Dominika#1684" in str(member):
                 await ctx.send("Nemôžeš zabanovať všemocnú Dominiku, ty bezvýznamná kreatúra!")
-            elif "Doktor Rajko#0913" in str(member):
+            elif "𝒟𝑜𝓀𝓉𝑜𝓇 ℛ𝒶𝒿𝓀𝑜#0913" in str(member):
                 await ctx.send("https://media.giphy.com/media/Wt6kNaMjofj1jHkF7t/giphy.gif")
                 await ctx.send(ctx.author.name + " dostal ban!!!")
             else:
@@ -219,6 +219,25 @@ class Commands(commands.Cog):
                 await ctx.send("<@" + str(member.id) + "> má ban!!§")
         else:
             await ctx.send("Použi @mention pre banan.")
+
+
+    @commands.has_any_role('Simp')
+    @commands.command(aliases=["upozorni","varuj","Warn","Upozorni","Varuj"])
+    async def warn(self, ctx, member, reason = ""):
+        filename2 = "./speech/warn.txt"
+        f2 = open(filename2,"r",encoding="utf8")
+        content2 = f2.readlines()
+        f2.close()
+
+        if (len(reason) != 0):
+            await ctx.send(random.choice(content2))
+            await ctx.send(member)
+            await ctx.send(" dovod: " + reason)
+        else:
+            await ctx.send(random.choice(content2))
+            await ctx.send(member)
+                #await channel.send("%s"% ctx.author.name + " ti odkazuje, citujem: \" " + message + " \"")
+
 
 
     @commands.command()
