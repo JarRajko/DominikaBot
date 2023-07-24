@@ -142,5 +142,5 @@ class Calendar(commands.Cog):
     #async def loopy(self):
     #    return
         
-def setup(bot):
-    bot.add_cog(Calendar(bot))
+async def setup(bot):
+    await bot.add_cog(Calendar(bot))

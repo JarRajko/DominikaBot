@@ -65,5 +65,5 @@ class Help_cog(commands.Cog):
         self.bot = bot
 
 
-def setup(bot):
-    bot.add_cog(Help_cog(bot))
+async def setup(bot):
+    await bot.add_cog(Help_cog(bot))

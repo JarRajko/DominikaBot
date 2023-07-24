@@ -53,5 +53,5 @@ class Translations(commands.Cog):
     async def vyznamHandler(self, ctx, error):
         await ctx.send("Takto to nefunguje ale :ˇ(")
 
-def setup(bot):
-    bot.add_cog(Translations(bot))
+async def setup(bot):
+    await bot.add_cog(Translations(bot))

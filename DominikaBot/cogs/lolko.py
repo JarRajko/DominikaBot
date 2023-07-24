@@ -74,5 +74,5 @@ class Lolko(commands.Cog):
         self.bot = bot
         #self.sprava = sprava
 
-def setup(bot):
-    bot.add_cog(Lolko(bot))
+async def setup(bot):
+    await bot.add_cog(Lolko(bot))

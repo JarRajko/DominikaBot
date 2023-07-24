@@ -211,7 +211,7 @@ class Commands(commands.Cog):
         if member is not None:
             if "Dominika#1684" in str(member):
                 await ctx.send("Nemôžeš zabanovať všemocnú Dominiku, ty bezvýznamná kreatúra!")
-            elif "𝒟𝑜𝓀𝓉𝑜𝓇 ℛ𝒶𝒿𝓀𝑜#0913" in str(member):
+            elif "doktorrajko" in str(member):
                 await ctx.send("https://media.giphy.com/media/Wt6kNaMjofj1jHkF7t/giphy.gif")
                 await ctx.send(ctx.author.name + " dostal ban!!!")
             else:
@@ -341,5 +341,5 @@ def stdoutIO(stdout=None):
     sys.stdout = old
 
           
-def setup(bot):
-    bot.add_cog(Commands(bot))
+async def setup(bot):
+    await bot.add_cog(Commands(bot))

@@ -1,12 +1,16 @@
 import discord 
 import random
 import os
+import asyncio
 
 from discord.ext import commands, tasks
 from itertools import cycle
 
+# zapne logovanie do konzoly
+discord.utils.setup_logging()
 
-intents = discord.Intents(messages = True, guilds = True, reactions = True, members = True, presences = True)
+#intents = discord.Intents(messages = True, guilds = True, reactions = True, members = True, presences = True)
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix = 'Dominika? ', intents = intents)
 
 @bot.event
@@ -25,32 +29,22 @@ async def load(ctx, extension):
 async def unload(ctx, extension):
     client.unload_extension(f'cogs.{extension}')
 
-for filename in os.listdir('.\cogs')    :
-    if filename.endswith('.py'):
-        bot.load_extension(f'cogs.{filename[:-3]}')    
-        print("Loaded extension: " + str(filename))
-        
-def is_check_user(ctx): #Check user
-    return ctx.author.id == 604630490225573898
-
-@bot.command()
-@commands.check(is_check_user) #Check user
-async def testicek(ctx):
-    channel = bot.get_channel(786223537395597356)
-    await ctx.send("Yes masťer.")
-    await ctx.send(ctx.guild.id)
-    await channel.send("REEEEEEEE")
-    
-
-
 #@tasks.loop(seconds=1800)
 #async def change_status():
 #    await bot.change_presence(activity=discord.Game(next(status)))
 
-def setup(bot):
-    bot.add_cog(Example(bot))
+#def setup(bot):
+#    bot.add_cog(Example(bot))
 
+async def main():
+    async with bot:
+        for filename in os.listdir('./cogs')    :
+            if filename.endswith('.py'):
+                await bot.load_extension(f'cogs.{filename[:-3]}')    
+                print("Loaded extension: " + str(filename))
 
-f = open("token.txt",encoding="utf8")
-token = f.readlines()    
-bot.run(token[0])    
+        f = open("token.txt",encoding="utf8")
+        token = f.readlines()
+        await bot.start(token[0])
+
+asyncio.run(main())

@@ -76,5 +76,5 @@ def open_file_txt(filePath):
     return content
     
 
-def setup(bot):
-    bot.add_cog(On_message(bot))
+async def setup(bot):
+    await bot.add_cog(On_message(bot))
