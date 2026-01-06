@@ -3,6 +3,7 @@
 3.1.Radmila
 4.1.Diana
 5.1.Dalimil
+6.1.Melichar.Kašpar.Baltazar
 7.1.Vilma
 8.1.Čestmir
 9.1.Vladan
@@ -69,7 +70,7 @@
 11.3.Anděla
 12.3.Řehoř
 13.3.Růžena
-14.33.Matylda.Růt
+14.3.Matylda.Růt
 15.3.Ida
 16.3.Elena.Herbert
 17.3.Vlastimil
@@ -299,6 +300,7 @@
 30.10.Tadeáš
 31.10.Štěpánka
 1.11.Felix
+2.11.Tobiáš
 3.11.Hubert
 4.11.Karel
 5.11.Miriam
