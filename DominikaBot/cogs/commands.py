@@ -49,7 +49,7 @@ class Commands(commands.Cog):
     async def dis(self, ctx):
         embed = discord.Embed(
             title = 'Ping',
-            description = 'Príkaz na zistenei odozvy. Čisto informatívny.',
+            description = 'Príkaz na zistenie odozvy. Čisto informatívny.',
             
             colour = discord.Colour.red()
         )
@@ -107,7 +107,10 @@ class Commands(commands.Cog):
         
 
 
-    
+
+#Test comment to edit le Dominika!!!! ------------------------------------------------------------------------
+            
+
     @commands.command()
     async def ocen(self, ctx, member : discord.Member, ocenenie, description, image_url):
         
