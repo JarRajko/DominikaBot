@@ -3,22 +3,21 @@ import asyncio
 import random
 import sys
 import contextlib
+import datetime
 
 
 from io import StringIO
-from discord.ext import commands
+from discord.ext import tasks, commands
 from . import help_cog
 from random import choice
 from RestrictedPython import safe_globals
-
-
+from zoneinfo import ZoneInfo
 
 class Commands(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
 
-    
     @commands.command(aliases=['Povedz,','povedz','povedz ','Povedz']) #Bot will send 1 random message from the list below after being triggered
     async def _8ball(self, ctx, *, question):
         filename = "./speech/yes_no.txt"
