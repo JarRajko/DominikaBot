@@ -1,15 +1,10 @@
 import discord 
-import random
 import os
 import asyncio
+from discord.ext import commands
 
-from discord.ext import commands, tasks
-from itertools import cycle
-
-# zapne logovanie do konzoly
 discord.utils.setup_logging()
 
-#intents = discord.Intents(messages = True, guilds = True, reactions = True, members = True, presences = True)
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix = 'Dominika? ', intents = intents)
 
@@ -18,33 +13,35 @@ async def on_ready():
     print("Dominika is online.")
     print('Logged in as ---->', bot.user)
     print('ID:', bot.user.id)
-    #await client.change_presence(activity=discord.Game(name='my game'))
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=" you!"))
 
 @bot.command()
 async def load(ctx, extension):
-    client.load_extension(f'cogs.{extension}')
+    await bot.load_extension(f'cogs.{extension}')
+    await ctx.send(f'Loaded: {extension}')
 
 @bot.command()
 async def unload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
-
-#@tasks.loop(seconds=1800)
-#async def change_status():
-#    await bot.change_presence(activity=discord.Game(next(status)))
-
-#def setup(bot):
-#    bot.add_cog(Example(bot))
+    await bot.unload_extension(f'cogs.{extension}')
+    await ctx.send(f'Unloaded: {extension}')
 
 async def main():
     async with bot:
-        for filename in os.listdir('./cogs')    :
-            if filename.endswith('.py'):
-                await bot.load_extension(f'cogs.{filename[:-3]}')    
-                print("Loaded extension: " + str(filename))
+        if os.path.exists('./cogs'):
+            for filename in os.listdir('./cogs'):
+                if filename.endswith('.py'):
+                    try:
+                        await bot.load_extension(f'cogs.{filename[:-3]}')
+                        print(f"Loaded extension: {filename}")
+                    except Exception as e:
+                        print(f"Failed to load extension {filename}: {e}")
 
-        f = open("token.txt",encoding="utf8")
-        token = f.readlines()
-        await bot.start(token[0])
+        try:
+            with open("token.txt", "r", encoding="utf8") as f:
+                token = f.read().strip()
+            await bot.start(token)
+        except FileNotFoundError:
+            print("Error! token does not exists!")
 
-asyncio.run(main())
+if __name__ == '__main__':
+    asyncio.run(main())
