@@ -46,7 +46,7 @@ class MessageScheduler(commands.Cog):
     @tasks.loop(time=TARGET_TIME)
     async def daily_message(self):
         channel = self.bot.get_channel(715513660281454623)
-        channel2 = self.bot.get_channel(796007842929836042)
+        channel2 = self.bot.get_channel(1478340273820930149)
         
         if not channel:
             return
