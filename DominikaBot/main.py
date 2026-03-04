@@ -13,7 +13,7 @@ async def on_ready():
     print("Dominika is online.")
     print('Logged in as ---->', bot.user)
     print('ID:', bot.user.id)
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=" you!"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=" "))
 
 @bot.command()
 async def load(ctx, extension):

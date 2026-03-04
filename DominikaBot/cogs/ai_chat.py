@@ -27,22 +27,42 @@ class AIChat(commands.Cog):
             self.chat_sessions[user_id] = self.model.start_chat(history=[])
         return self.chat_sessions[user_id]
 
+    async def generuj_odpoved(self, ctx_or_message, otazka, author_id):
+        try:
+            chat = self.get_chat_session(author_id)
+            response = chat.send_message(otazka)
+            
+            odpoved = response.text
+            if len(odpoved) > 2000:
+                for i in range(0, len(odpoved), 2000):
+                    await ctx_or_message.channel.send(odpoved[i:i+2000])
+            else:
+                if isinstance(ctx_or_message, commands.Context):
+                    await ctx_or_message.send(odpoved)
+                else:
+                    await ctx_or_message.reply(odpoved)
+        except Exception as e:
+            print(f"DEBUG ERROR: {e}")
+            await ctx_or_message.channel.send(f"Chyba: Model nebol nájdený alebo API nie je dostupné.")
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.author == self.bot.user:
+            return
+
+        if self.bot.user in message.mentions:
+            clean_content = message.content.replace(f"<@!{self.bot.user.id}>", "").replace(f"<@{self.bot.user.id}>", "").strip()
+            
+            if not clean_content:
+                clean_content = "Ahoj, si tu?"
+
+            async with message.channel.typing():
+                await self.generuj_odpoved(message, clean_content, message.author.id)
+
     @commands.command(name="ask")
     async def ask(self, ctx, *, otazka):
         async with ctx.typing():
-            try:
-                chat = self.get_chat_session(ctx.author.id)
-                response = chat.send_message(otazka)
-                
-                odpoved = response.text
-                if len(odpoved) > 2000:
-                    for i in range(0, len(odpoved), 2000):
-                        await ctx.send(odpoved[i:i+2000])
-                else:
-                    await ctx.send(odpoved)
-            except Exception as e:
-                print(f"DEBUG ERROR: {e}")
-                await ctx.send(f"Chyba: Model nebol nájdený alebo API nie je dostupné. Skús reštartovať bota.")
+            await self.generuj_odpoved(ctx, otazka, ctx.author.id)
 
     @commands.command(name="reset")
     async def reset(self, ctx):
