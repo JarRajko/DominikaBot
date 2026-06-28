@@ -25,35 +25,18 @@ class Calendar(commands.Cog):
             with open(file_path, "r", encoding="utf8") as f:
                 content = f.readlines()
             
-            # Formátujeme zajtrajší dátum, aby sme ho vedeli nájsť
-            tomorrow_date = datetime.now() + timedelta(days=1)
-            t_day = str(tomorrow_date.day)
-            t_month = str(tomorrow_date.month)
-
             for i in range(len(content)):
                 parts = content[i].strip().split(".")
-
                 
                 # Hľadáme dnešné meniny
                 if parts[0] == day and parts[1] == month:
-                    # Dnes
-                    if len(parts) == 4:
-                        names_today = f"{parts[2]} a {parts[3]}"
-                    elif len(parts) == 5:
-                        names_today = f"{parts[2]} a {parts[3]} a {parts[4]}"
-                        
-                    else:
-                        names_today = parts[2]
+                    # Spojíme všetky mená z tohto riadku pomocou " a "
+                    names_today = " a ".join(parts[2:])
                     
                     # Zajtra (zoberieme ďalší riadok ak existuje)
                     if i + 1 < len(content):
                         next_parts = content[i+1].strip().split(".")
-                        if len(next_parts) == 4:
-                            names_tomorrow = f"{next_parts[2]} a {next_parts[3]}"
-                        elif len(next_parts) == 5:
-                            names_today = f"{next_parts[2]} a {next_parts[3]} a {next_parts[4]}"
-                        else:
-                            names_tomorrow = next_parts[2]
+                        names_tomorrow = " a ".join(next_parts[2:])
                     break
                 
             return names_today, names_tomorrow
@@ -110,56 +93,54 @@ class Calendar(commands.Cog):
     @commands.command(aliases=['Meniny','meno', 'Meno']) # <3 Embed messages
     async def meniny(self, ctx, name, country = 'sk'):
         try:
+            file_path = "menaCz.txt" if country == "cz" else "mena.txt"
             
-            if  (country == "cz"): f = open("menaCz.txt",encoding="utf8")
-            else: f = open("mena.txt",encoding="utf8")
-            content = f.readlines()
-            if("." in name):
+            with open(file_path, "r", encoding="utf8") as f:
+                content = f.readlines()
+                
+            if ("." in name):
                 for x in content:
-                    x = x[:-1]
-                    x = x.split(".")
+                    x = x.strip().split(".")
    
-                    if(str(x[0]) + "." + str(x[1]) == name):
+                    if (str(x[0]) + "." + str(x[1]) == name):
                         await ctx.send(str(name) + " má meniny " + x[2])
-                        if(len(x) == 4):
-                            await ctx.send("a " + str(x[3]))
+                        if (len(x) >= 4):
+                            await ctx.send("a " + " a ".join(x[3:]))
                         return
+                
                 await ctx.send("Takto to nefunguje zlato. ")
                 await asyncio.sleep(1)
-                await ctx.send("Nemôžeš písať random bodky a čakať že to bude v \"pohode\".");
+                await ctx.send("Nemôžeš písať random bodky a čakať že to bude v \"pohode\".")
                 await asyncio.sleep(1)
                 await ctx.send("Pozri si radšej ako funguje tento príkaz.")
                 await asyncio.sleep(1)
                 await help_cog.Help_cog(self).pomoc(self, ctx, "meniny") 
             else:
                 for x in content:
-                    x = x[:-1]
-                    x = x.split(".")
-                    if(len(x) == 4):
-                        if(x[3] == name):
-                            await ctx.send(name + " má meniny "+ str(x[0])+"."+str(x[1]))
-                            return
-                    if(x[2]==name): 
-                        await ctx.send(name + " má meniny "+ str(x[0])+"."+str(x[1]))
+                    x = x.strip().split(".")
+                    # Pozrieme sa, či sa meno nachádza kdekoľvek od indexu 2 ďalej
+                    if name in x[2:]:
+                        await ctx.send(name + " má meniny " + str(x[0]) + "." + str(x[1]))
                         return
+                        
                 await ctx.send("Takto to nefunguje zlato. ")
                 await asyncio.sleep(1)
-                await ctx.send("Mená začínaju veľkým písmenom.");
+                await ctx.send("Mená začínaju veľkým písmenom.")
                 await asyncio.sleep(1)
                 await ctx.send("Pozri si radšej ako funguje tento príkaz.")
                 await asyncio.sleep(1)
                 await help_cog.Help_cog(self).pomoc(self, ctx, "meniny")    
-        except Exception as e: print(e)
+        except Exception as e: 
+            print(e)
 
     @meniny.error
     async def meninyHandler(self, ctx, error):
-        await ctx.send("Meniny KTO?!?!");
+        await ctx.send("Meniny KTO?!?!")
         await asyncio.sleep(1)
-        await ctx.send("Tu máš help ty nedokončovateľ príkazov.");
+        await ctx.send("Tu máš help ty nedokončovateľ príkazov.")
         await asyncio.sleep(1)
         await help_cog.Help_cog(self).pomoc(self, ctx, "meniny")
 
- 
        
 async def setup(bot):
     await bot.add_cog(Calendar(bot))
